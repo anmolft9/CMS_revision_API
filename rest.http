@@ -1,3 +1,10 @@
 ### check server status
 GET http://localhost:8000/
 
+
+
+#========Admin API
+###post new admin user
+
+
+
