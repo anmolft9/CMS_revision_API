@@ -11,3 +11,14 @@ All the api lend points will follow the following patterns `{rootUrl}/api/v1`
 This api endpoint us responsible for gabdleing all the admin user related requests.
 
 ALl the Admin api endpoints will follow the following patterns `{rootUrl}/api/v1/admin-user`
+
+| #   | PATH | METHOD | PRIVATE | DESCRIPTION |
+| --- | ---- | ------ | ------- | ----------- |
+
+|1. Admin
+
+- Receives new admin data and create new admin in our database. If admin user's email already exist, it will return error otherwise it will return success with user info from database
+
+- Receives `email, verificationCode` to verify newly create user action, returns success or error accordingly.
+
+- Receives `{email, password}` and checks if the user exist for that combination in our database, if it does, it will handle all the login process
