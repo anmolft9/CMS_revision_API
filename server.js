@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 //apis
 import adminUserRouter from "./src/routers/adminUserRouter.js";
 
-app.use("/api/v1/admin-user");
+app.use("/api/v1/admin-user", adminUserRouter);
 
 app.use((error, res, req, next) => {
   console.log(error);
