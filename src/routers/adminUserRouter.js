@@ -22,7 +22,7 @@ router.patch("/verify-email", (req, res, next) => {
 
     res.json({
       status: "success",
-      message: "verify email for new admin user",
+      message: "verify email for the new admin user",
     });
   } catch (error) {
     next(error);
