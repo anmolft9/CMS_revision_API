@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const dbConnection = () => {
+export const dbConnection = () => {
   try {
     const conStr = process.env.MONGO_CLIENT;
     if (!conStr) {

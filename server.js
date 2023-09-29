@@ -7,6 +7,10 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
+//db connection
+import { dbConnection } from "./src/config/dbConfig.js";
+dbConnection();
+
 ///middlewares
 app.use(cors());
 app.use(helmet());
