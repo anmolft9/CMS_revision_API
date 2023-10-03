@@ -2,14 +2,20 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     console.log(req.body);
+    const user = await insertAdminUser(req.body);
 
-    res.json({
-      status: "success",
-      message: "created new admin user",
-    });
+    user._id
+      ? res.json({
+          status: "success",
+          message: "We have sent you an email to verify",
+        })
+      : res.json({
+          status: "error",
+          message: "unable to create admin user",
+        });
   } catch (error) {
     next(error);
   }
