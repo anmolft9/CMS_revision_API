@@ -2,6 +2,11 @@ import express from "express";
 
 const router = express.Router();
 
+//server side validation
+//encrypt user password
+//insert into the db
+//create unique verification code
+
 router.post("/", async (req, res, next) => {
   try {
     console.log(req.body);
