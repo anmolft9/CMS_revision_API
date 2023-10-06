@@ -19,7 +19,7 @@ router.post("/", async (req, res, next) => {
         })
       : res.json({
           status: "error",
-          message: "unable to create admin user",
+          message: "unable to create admin user, error",
         });
   } catch (error) {
     next(error);
