@@ -6,6 +6,7 @@ const router = express.Router();
 //encrypt user password
 //insert into the db
 //create unique verification code
+//send created a like pointing to our frontedn with the email and verification code and send to their email
 
 router.post("/", async (req, res, next) => {
   try {
