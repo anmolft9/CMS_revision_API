@@ -4,7 +4,7 @@ export const insertAdminUser = (obj) => {
   return AdminUserSchema(obj).save();
 };
 
-export const insertAdminUser = (obj) => {
+export const getAdminUser = (obj) => {
   return AdminUserSchema(obj).save();
 };
 export const insertAdminUser = (obj) => {
