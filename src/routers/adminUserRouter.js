@@ -1,4 +1,5 @@
 import express from "express";
+import { insertAdminUser } from "../models/adminUser/AdminUserModel";
 
 const router = express.Router();
 
