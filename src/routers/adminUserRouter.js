@@ -1,5 +1,6 @@
 import express from "express";
 import { insertAdminUser } from "../models/adminUser/AdminUserModel.js";
+import { hashPassword } from "../helpers/bcryptHelper.js";
 
 const router = express.Router();
 
@@ -12,6 +13,12 @@ const router = express.Router();
 router.post("/", async (req, res, next) => {
   try {
     console.log(req.body);
+    const { password } = req.body;
+
+    const hashPass = hashPassword(password);
+    console.log(hashPass);
+    return;
+
     const user = await insertAdminUser(req.body);
 
     user._id
