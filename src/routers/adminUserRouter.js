@@ -28,6 +28,10 @@ router.post("/", async (req, res, next) => {
           message: "unable to create admin user, error",
         });
   } catch (error) {
+    if (error.message.includes("E11000 duplicate key error collection")) {
+      error.status = 200;
+      error.message = "email already used";
+    }
     next(error);
   }
 });
