@@ -27,7 +27,7 @@ import adminUserRouter from "./src/routers/adminUserRouter.js";
 
 app.use("/api/v1/admin-user", adminUserRouter);
 
-app.use((error, res, req, next) => {
+app.use((error, req, res, next) => {
   console.log(error);
   const statusCode = error.status || 404;
 

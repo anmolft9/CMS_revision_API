@@ -25,7 +25,6 @@ const adminUserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      maxLength: [30, "password cannot be longer than 30 characters"],
     },
     phone: {
       type: String,

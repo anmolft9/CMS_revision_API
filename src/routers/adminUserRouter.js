@@ -12,12 +12,9 @@ const router = express.Router();
 
 router.post("/", async (req, res, next) => {
   try {
-    console.log(req.body);
     const { password } = req.body;
 
-    const hashPass = hashPassword(password);
-    console.log(hashPass);
-    return;
+    req.body.password = hashPassword(password);
 
     const user = await insertAdminUser(req.body);
 
