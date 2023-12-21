@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const newAdminUserValidation = (req, res, next) => {
+export const newAdminUserValidation = (req, res, next) => {
   try {
     ///define rules and give data to the rules
     const schema = Joi.object({
