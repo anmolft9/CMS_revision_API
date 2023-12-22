@@ -2,6 +2,7 @@ import express from "express";
 import { insertAdminUser } from "../models/adminUser/AdminUserModel.js";
 import { hashPassword } from "../helpers/bcryptHelper.js";
 import { newAdminUserValidation } from "../middlewares/joi-validation/adminUserValidation.js";
+import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
@@ -16,18 +17,24 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
     const { password } = req.body;
 
     req.body.password = hashPassword(password);
+    req.body.emailValidationCode = uuidv4();
 
     const user = await insertAdminUser(req.body);
 
-    user._id
-      ? res.json({
-          status: "success",
-          message: "We have sent you an email to verify",
-        })
-      : res.json({
-          status: "error",
-          message: "unable to create admin user, error",
-        });
+    if (user._id) {
+      res.json({
+        status: "success",
+        message: "We have sent you an email to verify",
+      });
+      const url = `${process.env.ROOT_DOMAIN}/admin/verify-email?c=${user.emailValidationCode}&e=${user.email}`;
+      //send email
+      return;
+    }
+
+    res.json({
+      status: "error",
+      message: "unable to create admin user, error",
+    });
   } catch (error) {
     if (error.message.includes("E11000 duplicate key error collection")) {
       error.status = 200;
