@@ -1,6 +1,7 @@
 import express from "express";
 import { insertAdminUser } from "../models/adminUser/AdminUserModel.js";
 import { hashPassword } from "../helpers/bcryptHelper.js";
+import { newAdminUserValidation } from "../middlewares/joi-validation/adminUserValidation.js";
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ const router = express.Router();
 //create unique verification code
 //send created a like pointing to our frontedn with the email and verification code and send to their email
 
-router.post("/", async (req, res, next) => {
+router.post("/", newAdminUserValidation, async (req, res, next) => {
   try {
     const { password } = req.body;
 

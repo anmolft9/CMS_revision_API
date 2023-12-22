@@ -9,13 +9,14 @@ POST http://localhost:8000/api/v1/admin-user
 Content-Type: application/json
 
 {
-    "fName": "Anmolsssg",
+    
+    "fName":"Anmolsssg",
     "lName": "Bhatstasrasig",
-    "email": "yssys@",
+    "email": "yssys@a.com",
     "password": "aaggsfs",
     "phone": "0980754421",
     "address": "queansby",
-    "DOB": "1995-01-17"
+    "DOB": ""
 }
 
 
