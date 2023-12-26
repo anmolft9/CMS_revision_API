@@ -24,12 +24,12 @@ const emailProcessor = async (emailBody) => {
   }
 };
 
-const verificationEmail = (maileData) => {
+const verificationEmail = (emailData) => {
   const emailBody = {
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "bar@example.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
+    from: '"Anmol 👻" <myemail@anmol.com>', // sender address
+    to: emailData.email, // list of receivers
+    subject: "email verification instructor ✔", // Subject line
+    text: `hi ${emailData.fName}, please follow the link to verifiy your email: ${email.url}`, // plain text body
     html: "<b>Hello world?</b>", // html body
   };
   emailProcessor(emailBody);
