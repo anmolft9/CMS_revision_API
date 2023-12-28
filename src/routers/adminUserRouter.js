@@ -3,6 +3,7 @@ import { insertAdminUser } from "../models/adminUser/AdminUserModel.js";
 import { hashPassword } from "../helpers/bcryptHelper.js";
 import { newAdminUserValidation } from "../middlewares/joi-validation/adminUserValidation.js";
 import { v4 as uuidv4 } from "uuid";
+import { verificationEmail } from "../helpers/emailHelper.js";
 
 const router = express.Router();
 
@@ -28,6 +29,11 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
       });
       const url = `${process.env.ROOT_DOMAIN}/admin/verify-email?c=${user.emailValidationCode}&e=${user.email}`;
       //send email
+      verificationEmail({
+        fName: user.fName,
+        lName: user.lName,
+        url,
+      });
       return;
     }
 

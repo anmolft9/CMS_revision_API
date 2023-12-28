@@ -17,14 +17,15 @@ const emailProcessor = async (emailBody) => {
         pass: process.env.EMAIL_PASSWORD,
       },
     });
-
+    //send email with defined transport object
     const info = await transporter.sendMail(emailBody);
+    console.log("Message sent: %s", info.messageId);
   } catch (error) {
     console.log(error);
   }
 };
 
-const verificationEmail = (emailData) => {
+export const verificationEmail = (emailData) => {
   const emailBody = {
     from: '"Anmol 👻" <myemail@anmol.com>', // sender address
     to: emailData.email, // list of receivers
