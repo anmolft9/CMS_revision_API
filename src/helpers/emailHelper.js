@@ -30,7 +30,21 @@ const verificationEmail = (emailData) => {
     to: emailData.email, // list of receivers
     subject: "email verification instructor ✔", // Subject line
     text: `hi ${emailData.fName}, please follow the link to verifiy your email: ${email.url}`, // plain text body
-    html: "<b>Hello world?</b>", // html body
+    html: `
+    <p>Hi ${emailData.fName}</p>
+    <br/>
+    <br/>
+    <p>please follow the link to verify your email</p>
+    <br/>
+    <br/>
+    <p><a style="color:red" href="${emailData.url}">Verify Email</p>
+    <br/>
+    <p>
+    Regards, <br/>
+    Anmol Store
+    </p>
+    
+    `, // html body
   };
   emailProcessor(emailBody);
 };
