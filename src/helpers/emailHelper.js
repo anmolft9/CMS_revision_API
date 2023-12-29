@@ -26,6 +26,7 @@ const emailProcessor = async (emailBody) => {
 };
 
 export const verificationEmail = (emailData) => {
+  console.log(emailData);
   const emailBody = {
     from: '"Anmol 👻" <myemail@anmol.com>', // sender address
     to: emailData.email, // list of receivers
