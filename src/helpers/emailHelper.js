@@ -20,6 +20,7 @@ const emailProcessor = async (emailBody) => {
     //send email with defined transport object
     const info = await transporter.sendMail(emailBody);
     console.log("Message sent: %s", info.messageId);
+    console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
   } catch (error) {
     console.log(error);
   }
@@ -31,7 +32,7 @@ export const verificationEmail = (emailData) => {
     from: '"Anmol 👻" <myemail@anmol.com>', // sender address
     to: emailData.email, // list of receivers
     subject: "email verification instructor ✔", // Subject line
-    text: `hi ${emailData.fName}, please follow the link to verifiy your email: ${email.url}`, // plain text body
+    text: `hi ${emailData.fName}, please follow the link to verifiy your email: ${emailData.url}`, // plain text body
     html: `
     <p>Hi ${emailData.fName}</p>
     <br/>

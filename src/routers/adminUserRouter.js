@@ -15,6 +15,7 @@ const router = express.Router();
 
 router.post("/", newAdminUserValidation, async (req, res, next) => {
   try {
+    console.log("here1");
     const { password } = req.body;
 
     req.body.password = hashPassword(password);
@@ -23,6 +24,7 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
     const user = await insertAdminUser(req.body);
 
     if (user._id) {
+      console.log("here");
       res.json({
         status: "success",
         message: "We have sent you an email to verify",
@@ -32,6 +34,7 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
       verificationEmail({
         fName: user.fName,
         lName: user.lName,
+        email: user.email,
         url,
       });
       return;
