@@ -30,7 +30,7 @@ export const emailVerificationValidation = (req, res, next) => {
     ///define rules and give data to the rules
     const schema = Joi.object({
       email: Joi.string().email({ minDomainSegments: 2 }).required(),
-      emailValidation: Joi.string().max(100).required(),
+      emailValidationCode: Joi.string().max(100).required(),
     });
 
     const { error } = schema.validate(req.body);

@@ -4,6 +4,7 @@ const adminUserSchema = new mongoose.Schema(
   {
     status: {
       type: String,
+      default: "inactive",
     },
     fName: {
       type: String,

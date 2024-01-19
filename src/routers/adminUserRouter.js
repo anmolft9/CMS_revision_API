@@ -1,5 +1,8 @@
 import express from "express";
-import { insertAdminUser } from "../models/adminUser/AdminUserModel.js";
+import {
+  insertAdminUser,
+  updateOneAdminUser,
+} from "../models/adminUser/AdminUserModel.js";
 import { hashPassword } from "../helpers/bcryptHelper.js";
 import {
   emailVerificationValidation,
@@ -57,17 +60,38 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
 });
 
 //patch
-router.patch("/verify-email", emailVerificationValidation, (req, res, next) => {
-  try {
-    console.log(req.body);
+router.patch(
+  "/verify-email",
+  emailVerificationValidation,
+  async (req, res, next) => {
+    try {
+      console.log(req.body);
+      const { email, emailValidationCode } = req.body;
 
-    res.json({
-      status: "success",
-      message: "verify email for the new admin user",
-    });
-  } catch (error) {
-    next(error);
+      const user = await updateOneAdminUser(
+        {
+          email,
+          emailValidationCode,
+        },
+        {
+          status: "active",
+          emailValidationCode: "",
+        }
+      );
+
+      user?._id
+        ? res.json({
+            status: "success",
+            message: "email Verified, login now",
+          })
+        : res.json({
+            status: "error",
+            message: "email couldnot be verified, try again",
+          });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 export default router;
