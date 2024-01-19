@@ -1,7 +1,10 @@
 import express from "express";
 import { insertAdminUser } from "../models/adminUser/AdminUserModel.js";
 import { hashPassword } from "../helpers/bcryptHelper.js";
-import { newAdminUserValidation } from "../middlewares/joi-validation/adminUserValidation.js";
+import {
+  emailVerificationValidation,
+  newAdminUserValidation,
+} from "../middlewares/joi-validation/adminUserValidation.js";
 import { v4 as uuidv4 } from "uuid";
 import { verificationEmail } from "../helpers/emailHelper.js";
 
@@ -54,7 +57,7 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
 });
 
 //patch
-router.patch("/verify-email", (req, res, next) => {
+router.patch("/verify-email", emailVerificationValidation, (req, res, next) => {
   try {
     console.log(req.body);
 
