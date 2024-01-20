@@ -26,6 +26,30 @@ const emailProcessor = async (emailBody) => {
   }
 };
 
+export const userVerifiedNotification = (emailData) => {
+  const emailBody = {
+    from: '"Anmol 👻" <myemail@anmol.com>', // sender address
+    to: emailData.email, // list of receivers
+    subject: "email verification instructor ✔", // Subject line
+    text: `hi ${emailData.fName}, Your account has been verified: ${process.env.ROOT_DOMAIN}`, // plain text body
+    html: `
+    <p>Hi ${emailData.fName}</p>
+    <br/>
+    <br/>
+    <p>Your account has been verified: ${process.env.ROOT_DOMAIN}</p>
+    <br/>
+    <br/>
+    <p><a style="color:red" href="${emailData.url}">Verify Email</p>
+    <br/>
+    <p>
+    Regards, <br/>
+    Anmol Store
+    </p>
+    
+    `, // html body
+  };
+  emailProcessor(emailBody);
+};
 export const verificationEmail = (emailData) => {
   const emailBody = {
     from: '"Anmol 👻" <myemail@anmol.com>', // sender address

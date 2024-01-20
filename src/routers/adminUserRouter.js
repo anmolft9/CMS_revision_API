@@ -9,7 +9,10 @@ import {
   newAdminUserValidation,
 } from "../middlewares/joi-validation/adminUserValidation.js";
 import { v4 as uuidv4 } from "uuid";
-import { verificationEmail } from "../helpers/emailHelper.js";
+import {
+  userVerifiedNotification,
+  verificationEmail,
+} from "../helpers/emailHelper.js";
 
 const router = express.Router();
 
@@ -83,7 +86,7 @@ router.patch(
         ? res.json({
             status: "success",
             message: "email Verified, login now",
-          })
+          }) && userVerifiedNotification(user)
         : res.json({
             status: "error",
             message: "email couldnot be verified, try again",
