@@ -22,6 +22,7 @@ const router = express.Router();
 //create unique verification code
 //send created a like pointing to our frontedn with the email and verification code and send to their email
 
+///post
 router.post("/", newAdminUserValidation, async (req, res, next) => {
   try {
     console.log("here1");
@@ -96,5 +97,35 @@ router.patch(
     }
   }
 );
+
+router.post("/login", emailVerificationValidation, async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { email, emailValidationCode } = req.body;
+
+    const user = await updateOneAdminUser(
+      {
+        email,
+        emailValidationCode,
+      },
+      {
+        status: "active",
+        emailValidationCode: "",
+      }
+    );
+
+    user?._id
+      ? res.json({
+          status: "success",
+          message: "email Verified, login now",
+        }) && userVerifiedNotification(user)
+      : res.json({
+          status: "error",
+          message: "email couldnot be verified, try again",
+        });
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;
