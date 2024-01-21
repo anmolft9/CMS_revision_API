@@ -1,11 +1,13 @@
 import express from "express";
 import {
+  findOneAdminUser,
   insertAdminUser,
   updateOneAdminUser,
 } from "../models/adminUser/AdminUserModel.js";
 import { hashPassword } from "../helpers/bcryptHelper.js";
 import {
   emailVerificationValidation,
+  loginValidation,
   newAdminUserValidation,
 } from "../middlewares/joi-validation/adminUserValidation.js";
 import { v4 as uuidv4 } from "uuid";
@@ -98,21 +100,18 @@ router.patch(
   }
 );
 
-router.post("/login", emailVerificationValidation, async (req, res, next) => {
+router.post("/login", loginValidation, async (req, res, next) => {
   try {
     console.log(req.body);
-    const { email, emailValidationCode } = req.body;
+    const { email, password } = req.body;
 
-    const user = await updateOneAdminUser(
-      {
-        email,
-        emailValidationCode,
-      },
-      {
-        status: "active",
-        emailValidationCode: "",
-      }
-    );
+    //find if user exist based on given email
+
+    const user = await findOneAdminUser({ email });
+
+    if (user?._id) {
+      //we need to verify if the pw sent by the user and the hash paswword matches?
+    }
 
     user?._id
       ? res.json({
