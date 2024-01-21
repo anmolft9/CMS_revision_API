@@ -112,9 +112,18 @@ router.post("/login", loginValidation, async (req, res, next) => {
     const user = await findOneAdminUser({ email }); ///to check the email
 
     if (user?._id) {
+      //check if the user is active?
+      if (user?.status !== "active") {
+        return res.json({
+          status: "error",
+          message:
+            "Your account hasnot been verified, please go to you email and click the link below,Thanks",
+        });
+      }
       //we need to verify if the pw sent by the user and the hash paswword matches?
       const isMatched = comparePassword(password, user.password);
       if (isMatched) {
+        user.password = undefined;
         return res.json({
           status: "success",
           message: "logged in successfully",
