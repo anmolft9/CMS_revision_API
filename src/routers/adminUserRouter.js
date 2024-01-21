@@ -4,7 +4,7 @@ import {
   insertAdminUser,
   updateOneAdminUser,
 } from "../models/adminUser/AdminUserModel.js";
-import { hashPassword } from "../helpers/bcryptHelper.js";
+import { comparePassword, hashPassword } from "../helpers/bcryptHelper.js";
 import {
   emailVerificationValidation,
   loginValidation,
@@ -24,7 +24,7 @@ const router = express.Router();
 //create unique verification code
 //send created a like pointing to our frontedn with the email and verification code and send to their email
 
-///post
+///post new user
 router.post("/", newAdminUserValidation, async (req, res, next) => {
   try {
     console.log("here1");
@@ -65,7 +65,7 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
   }
 });
 
-//patch
+//patch to verify email
 router.patch(
   "/verify-email",
   emailVerificationValidation,
@@ -100,6 +100,8 @@ router.patch(
   }
 );
 
+///login router
+
 router.post("/login", loginValidation, async (req, res, next) => {
   try {
     console.log(req.body);
@@ -107,21 +109,24 @@ router.post("/login", loginValidation, async (req, res, next) => {
 
     //find if user exist based on given email
 
-    const user = await findOneAdminUser({ email });
+    const user = await findOneAdminUser({ email }); ///to check the email
 
     if (user?._id) {
       //we need to verify if the pw sent by the user and the hash paswword matches?
+      const isMatched = comparePassword(password, user.password);
+      if (isMatched) {
+        return res.json({
+          status: "success",
+          message: "logged in successfully",
+          user,
+        });
+      }
     }
 
-    user?._id
-      ? res.json({
-          status: "success",
-          message: "email Verified, login now",
-        }) && userVerifiedNotification(user)
-      : res.json({
-          status: "error",
-          message: "email couldnot be verified, try again",
-        });
+    res.json({
+      status: "error",
+      message: "Sorry, email or password doesnot match",
+    });
   } catch (error) {
     next(error);
   }
