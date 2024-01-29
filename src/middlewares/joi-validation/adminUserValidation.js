@@ -1,16 +1,25 @@
 import Joi from "joi";
+import {
+  ADDRESS,
+  DATE,
+  EMAIL,
+  FNAME,
+  LNAME,
+  PASSWORD,
+  PHONE,
+} from "./constant";
 
 export const newAdminUserValidation = (req, res, next) => {
   try {
     ///define rules and give data to the rules
     const schema = Joi.object({
-      fName: Joi.string().max(20).required(),
-      lName: Joi.string().max(20).required(),
-      email: Joi.string().email({ minDomainSegments: 2 }),
-      password: Joi.string().max(100).required(),
-      phone: Joi.string().max(20).required(),
-      address: Joi.string().max(200),
-      DOB: Joi.date().allow("", null),
+      fName: FNAME.required(),
+      lName: LNAME.required(),
+      email: EMAIL.required(),
+      password: PASSWORD.required(),
+      phone: PHONE,
+      address: ADDRESS,
+      DOB: DATE.allow("", null),
     });
 
     const { error } = schema.validate(req.body);
