@@ -8,5 +8,5 @@ export const PHONE = Joi.string().max(20);
 export const ADDRESS = Joi.string().max(200).allow("", null);
 export const DATE = Joi.date();
 
-export const SHORTSTR = Joi.string().max(50);
+export const SHORTSTR = Joi.string().max(100);
 export const LONGSTR = Joi.string().max(5000);
