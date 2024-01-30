@@ -8,6 +8,7 @@ import {
   PASSWORD,
   PHONE,
   SHORTSTR,
+  validator,
 } from "./constant";
 
 export const newAdminUserValidation = (req, res, next) => {
@@ -23,13 +24,7 @@ export const newAdminUserValidation = (req, res, next) => {
       DOB: DATE.allow("", null),
     });
 
-    const { error } = schema.validate(req.body);
-
-    if (error) {
-      error.status = 200;
-      return next(error);
-    }
-    next();
+    validator(schema, req, res, next);
   } catch (error) {
     next(error);
   }
