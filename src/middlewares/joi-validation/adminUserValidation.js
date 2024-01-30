@@ -11,60 +11,41 @@ import {
   validator,
 } from "./constant";
 
+//user registration validation
 export const newAdminUserValidation = (req, res, next) => {
-  try {
-    ///define rules and give data to the rules
-    const schema = Joi.object({
-      fName: FNAME.required(),
-      lName: LNAME.required(),
-      email: EMAIL.required(),
-      password: PASSWORD.required(),
-      phone: PHONE,
-      address: ADDRESS,
-      DOB: DATE.allow("", null),
-    });
+  ///define rules and give data to the rules
+  const schema = Joi.object({
+    fName: FNAME.required(),
+    lName: LNAME.required(),
+    email: EMAIL.required(),
+    password: PASSWORD.required(),
+    phone: PHONE,
+    address: ADDRESS,
+    DOB: DATE.allow("", null),
+  });
 
-    validator(schema, req, res, next); //variable defined in the constant.js
-  } catch (error) {
-    next(error);
-  }
+  validator(schema, req, res, next); //variable defined in the constant.js
 };
 
+//email validation
 export const emailVerificationValidation = (req, res, next) => {
-  try {
-    ///define rules and give data to the rules
-    const schema = Joi.object({
-      email: EMAIL.required(),
-      emailValidationCode: SHORTSTR.required(),
-    });
+  ///define rules and give data to the rules
+  const schema = Joi.object({
+    email: EMAIL.required(),
+    emailValidationCode: SHORTSTR.required(),
+  });
 
-    const { error } = schema.validate(req.body);
-    if (error) {
-      error.status = 200;
-      return next(error);
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
+  validator(schema, req, res, next);
 };
 
 ///login validation
 export const loginValidation = (req, res, next) => {
-  try {
-    ///define rules and give data to the rules
-    const schema = Joi.object({
-      email: EMAIL.required(),
-      password: PASSWORD.required(),
-    });
+  ///define rules and give data to the rules
+  const schema = Joi.object({
+    email: EMAIL.required(),
+    password: PASSWORD.required(),
+  });
 
-    const { error } = schema.validate(req.body);
-    if (error) {
-      error.status = 200;
-      return next(error);
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
+  validator(schema, req, res, next);
+  next();
 };
