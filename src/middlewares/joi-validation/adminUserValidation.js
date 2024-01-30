@@ -24,7 +24,7 @@ export const newAdminUserValidation = (req, res, next) => {
       DOB: DATE.allow("", null),
     });
 
-    validator(schema, req, res, next);
+    validator(schema, req, res, next); //variable defined in the constant.js
   } catch (error) {
     next(error);
   }
