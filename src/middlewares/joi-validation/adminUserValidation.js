@@ -9,7 +9,7 @@ import {
   PHONE,
   SHORTSTR,
   validator,
-} from "./constant";
+} from "./constant.js";
 
 //user registration validation
 export const newAdminUserValidation = (req, res, next) => {
