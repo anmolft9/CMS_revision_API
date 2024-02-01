@@ -113,6 +113,7 @@ router.post("/login", loginValidation, async (req, res, next) => {
 
     if (user?._id) {
       //check if the user is active?
+
       if (user?.status !== "active") {
         return res.json({
           status: "error",

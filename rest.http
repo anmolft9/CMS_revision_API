@@ -12,7 +12,7 @@ Content-Type: application/json
     
     "fName":"Anmolsssg",
     "lName": "Bhatstasrasig",
-    "email": "anmol.bhattarai1942@gmail.com",
+    "email": "anmol.bhattarai1944@gmail.com",
     "password": "123456",
     "phone": "0980754421",
     "address": "queansby",
@@ -25,7 +25,7 @@ POST http://localhost:8000/api/v1/admin-user/login
 Content-Type: application/json
 
 {
-    "email": "anmol.bhattarai1942@gmail.com",
+    "email": "anmol.bhattarai1944@gmail.com",
     "password": "123456"
 }
 

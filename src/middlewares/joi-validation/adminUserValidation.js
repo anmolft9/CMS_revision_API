@@ -47,5 +47,4 @@ export const loginValidation = (req, res, next) => {
   });
 
   validator(schema, req, res, next);
-  next();
 };
