@@ -101,7 +101,6 @@ router.patch(
 );
 
 ///login router
-
 router.post("/login", loginValidation, async (req, res, next) => {
   try {
     console.log(req.body);
