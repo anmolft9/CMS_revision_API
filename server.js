@@ -37,6 +37,8 @@ app.use((error, req, res) => {
   });
 });
 
+///server connection
+
 app.listen(PORT, (error) => {
   error
     ? console.log(error)
