@@ -15,6 +15,7 @@ import {
   userVerifiedNotification,
   verificationEmail,
 } from "../helpers/emailHelper.js";
+import { signAccessJWT } from "../helpers/jwtHelpers.js";
 
 const router = express.Router();
 
@@ -124,6 +125,10 @@ router.post("/login", loginValidation, async (req, res, next) => {
       const isMatched = comparePassword(password, user.password);
       if (isMatched) {
         user.password = undefined;
+
+        ///jwt
+        const jwt = signAccessJWT({ email });
+
         return res.json({
           status: "success",
           message: "logged in successfully",
