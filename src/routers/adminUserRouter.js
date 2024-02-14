@@ -126,7 +126,7 @@ router.post("/login", loginValidation, async (req, res, next) => {
       if (isMatched) {
         user.password = undefined;
 
-        ///jwt
+        ///sending email to use for created token// just for test
         const jwt = signAccessJWT({ email });
 
         return res.json({
