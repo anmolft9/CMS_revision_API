@@ -127,7 +127,7 @@ router.post("/login", loginValidation, async (req, res, next) => {
         user.password = undefined;
 
         ///sending email to use for created token// just for test// bad approach
-        const jwt = signAccessJWT({ email });
+        const jwt = await signAccessJWT({ email });
 
         return res.json({
           status: "success",

@@ -24,4 +24,4 @@ const sessionSchema = new mongoose.Schema(
   }
 );
 
-export default sessionSchema;
+export default mongoose.model("Session", sessionSchema);
