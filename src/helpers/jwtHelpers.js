@@ -26,3 +26,10 @@ export const signRefreshJWT = async (payload) => {
   await updateOneAdminUser(payload, { refreshJWT });
   return refreshJWT;
 };
+
+export const createJWTs = async (payload) => {
+  return {
+    accessToken: await signAccessJWT(payload),
+    refreshToken: await signRefreshJWT(payload),
+  };
+};

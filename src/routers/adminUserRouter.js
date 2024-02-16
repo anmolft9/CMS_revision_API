@@ -15,7 +15,7 @@ import {
   userVerifiedNotification,
   verificationEmail,
 } from "../helpers/emailHelper.js";
-import { signAccessJWT } from "../helpers/jwtHelpers.js";
+import { createJWTs } from "../helpers/jwtHelpers.js";
 
 const router = express.Router();
 
@@ -127,7 +127,7 @@ router.post("/login", loginValidation, async (req, res, next) => {
         user.password = undefined;
 
         ///sending email to use for created token// just for test// bad approach
-        const jwt = await signAccessJWT({ email });
+        const jwt = await createJWTs({ email });
 
         return res.json({
           status: "success",
