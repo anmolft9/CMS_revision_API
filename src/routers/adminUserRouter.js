@@ -133,7 +133,7 @@ router.post("/login", loginValidation, async (req, res, next) => {
           status: "success",
           message: "logged in successfully",
           user,
-          jwt,
+          ...jwt,
         });
       }
     }
