@@ -4,17 +4,17 @@ import { updateOneAdminUser } from "../models/adminUser/AdminUserModel.js";
 
 ///create access using the user data
 export const signAccessJWT = async (payload) => {
-  const accessToken = jwt.sign({ payload }, process.env.JWT_ACCESS_SECRET, {
+  const accessJWT = jwt.sign({ payload }, process.env.JWT_ACCESS_SECRET, {
     expiresIn: "15min",
   });
 
   const obj = {
-    token: accessToken,
+    token: accessJWT,
     type: "jwt",
   };
 
   await insertSession(obj);
-  return accessToken;
+  return accessJWT;
 };
 
 ///create Refresh token using the user data
@@ -29,7 +29,7 @@ export const signRefreshJWT = async (payload) => {
 
 export const createJWTs = async (payload) => {
   return {
-    accessToken: await signAccessJWT(payload),
-    refreshToken: await signRefreshJWT(payload),
+    accessJWT: await signAccessJWT(payload),
+    refreshJWT: await signRefreshJWT(payload),
   };
 };
