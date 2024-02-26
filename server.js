@@ -24,9 +24,10 @@ app.get("/", (req, res) => {
 
 //apis
 import adminUserRouter from "./src/routers/adminUserRouter.js";
+import categoryRouter from "./src/routers/categoryRouter.js";
 
 app.use("/api/v1/admin-user", adminUserRouter);
-app.use("/api/v1/category", adminUserRouter);
+app.use("/api/v1/category", categoryRouter);
 
 app.use((error, req, res) => {
   console.log(error);

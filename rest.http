@@ -12,7 +12,7 @@ Content-Type: application/json
     
     "fName":"Anmolsssg",
     "lName": "Bhatstasrasig",
-    "email": "anmol.bhattarai1945@gmail.com",
+    "email": "anmol.bhattarai1944s@gmail.com",
     "password": "123456",
     "phone": "0980754421",
     "address": "queansby",
@@ -25,9 +25,22 @@ POST http://localhost:8000/api/v1/admin-user/login
 Content-Type: application/json
 
 {
-    "email": "anmol.bhattarai1945@gmail.com",
+    "email": "anmol.bhattarai1944s@gmail.com",
     "password": "123456"
 }
 
+
+
+
+###category router
+POST http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+{
+    "status" : "active",
+    "name": "electronics",
+    "parentId":"0asdi98asdasd"
+    
+}
 
 

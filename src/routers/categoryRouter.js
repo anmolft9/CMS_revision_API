@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post("/", (req, res, next) => {
   try {
+    console.log(req.body);
     res.json({
       status: "success",
       message: "got it",
@@ -12,3 +13,5 @@ router.post("/", (req, res, next) => {
     next(err);
   }
 });
+
+export default router;
