@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 //joi rules
+export const STATUS = Joi.string().max(10);
 export const FNAME = Joi.string().max(20);
 export const LNAME = Joi.string().max(20);
 export const EMAIL = Joi.string().email({ minDomainSegments: 2 });

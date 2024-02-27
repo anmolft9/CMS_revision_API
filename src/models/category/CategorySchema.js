@@ -10,14 +10,14 @@ const CategorySchema = new mongoose.Schema({
     required: true,
     maxLength: 50,
   },
-  slug: {
-    type: String,
-    required: true,
-    unique: true,
-    index: 1,
-    maxLength: 50,
-    trim: true,
-  },
+  // slug: {
+  //   type: String,
+  //   required: true,
+  //   unique: true,
+  //   index: 1,
+  //   maxLength: 50,
+  //   trim: true,
+  // },
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
     default: null,

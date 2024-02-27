@@ -9,7 +9,7 @@ import {
   emailVerificationValidation,
   loginValidation,
   newAdminUserValidation,
-} from "../middlewares/joi-validation/adminUserValidation.js";
+} from "../middlewares/joi-validation/joiValidation.js";
 import { v4 as uuidv4 } from "uuid";
 import {
   userVerifiedNotification,

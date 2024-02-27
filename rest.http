@@ -38,9 +38,9 @@ Content-Type: application/json
 
 {
     "status" : "active",
-    "name": "electronics",
-    "parentId":"0asdi98asdasd"
-    
+    "name": "Printer",
+    "parentId": "65dd96204b54f7e5f8335229"
+
 }
 
 
