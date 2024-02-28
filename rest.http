@@ -33,14 +33,28 @@ Content-Type: application/json
 
 
 ###category router
+
+###creating category
 POST http://localhost:8000/api/v1/category
 Content-Type: application/json
 
 {
     "status" : "active",
-    "name": "Philips Printer",
-    "parentId": "65df2a3207e317459b273663"
+    "name": "laptop",
+    "parentId": ""
 
 }
+
+
+###fetching all the categories
+GET http://localhost:8000/api/v1/category
+
+
+###fetching one specific categories
+GET http://localhost:8000/api/v1/category/65df4fc40b411220fd2d7ede
+
+
+
+
 
 

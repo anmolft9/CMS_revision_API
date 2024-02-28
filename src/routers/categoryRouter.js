@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getAllCategory,
   getOneCategory,
   insertCategory,
 } from "../models/category/CategoryModel.js";
@@ -8,10 +9,16 @@ import slugify from "slugify";
 
 const router = express.Router();
 
-router.get("/:id?", async (req, res, next) => {
+router.get("/:_id?", async (req, res, next) => {
   try {
     const { _id } = req.params;
-    const categories = _id ? await getOneCategory(_id) : getAllCategory();
+    const categories = _id ? await getOneCategory(_id) : await getAllCategory();
+
+    res.json({
+      status: 200,
+      message: "Fetched the categories",
+      categories,
+    });
   } catch (err) {
     err.status = 500;
     next(err);
