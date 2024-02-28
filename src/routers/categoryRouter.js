@@ -1,9 +1,22 @@
 import express from "express";
-import { insertCategory } from "../models/category/CategoryModel.js";
+import {
+  getOneCategory,
+  insertCategory,
+} from "../models/category/CategoryModel.js";
 import { newCategoryValidation } from "../middlewares/joi-validation/joiValidation.js";
 import slugify from "slugify";
 
 const router = express.Router();
+
+router.get("/:id?", async (req, res, next) => {
+  try {
+    const { _id } = req.params;
+    const categories = _id ? await getOneCategory(_id) : getAllCategory();
+  } catch (err) {
+    err.status = 500;
+    next(err);
+  }
+});
 
 router.post("/", newCategoryValidation, async (req, res, next) => {
   try {
