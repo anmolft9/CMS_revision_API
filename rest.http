@@ -38,8 +38,8 @@ Content-Type: application/json
 
 {
     "status" : "active",
-    "name": "Printer",
-    "parentId": "65dd96204b54f7e5f8335229"
+    "name": "Philips Printer",
+    "parentId": "65df2a3207e317459b273663"
 
 }
 
