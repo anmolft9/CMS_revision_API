@@ -15,7 +15,7 @@ router.get("/:_id?", async (req, res, next) => {
     const categories = _id ? await getOneCategory(_id) : await getAllCategory();
 
     res.json({
-      status: 200,
+      status: "success",
       message: "Fetched the categories",
       categories,
     });
