@@ -32,12 +32,14 @@ router.post("/", newCategoryValidation, async (req, res, next) => {
       lower: true,
       trim: true,
     });
-    const result = await insertCategory(req.body);
+    const categories = await insertCategory(req.body);
+    // console.log(result);
 
-    result?._id
+    categories?._id
       ? res.json({
           status: "success",
           message: "category added successfully",
+          categories,
         })
       : res.json({
           status: "error",
