@@ -9,6 +9,7 @@ import slugify from "slugify";
 
 const router = express.Router();
 
+//retrieve category
 router.get("/:_id?", async (req, res, next) => {
   try {
     const { _id } = req.params;
@@ -25,6 +26,7 @@ router.get("/:_id?", async (req, res, next) => {
   }
 });
 
+//insert category
 router.post("/", newCategoryValidation, async (req, res, next) => {
   try {
     // console.log(req.body);
@@ -47,6 +49,15 @@ router.post("/", newCategoryValidation, async (req, res, next) => {
         });
   } catch (err) {
     next(err);
+  }
+});
+
+//update category
+router.put("/", async (req, res) => {
+  try {
+    console.log(req.body);
+  } catch (eror) {
+    next(error);
   }
 });
 
