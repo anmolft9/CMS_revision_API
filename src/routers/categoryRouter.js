@@ -3,8 +3,12 @@ import {
   getAllCategory,
   getOneCategory,
   insertCategory,
+  updateCategoryById,
 } from "../models/category/CategoryModel.js";
-import { newCategoryValidation } from "../middlewares/joi-validation/joiValidation.js";
+import {
+  newCategoryValidation,
+  updateCategoryValidation,
+} from "../middlewares/joi-validation/joiValidation.js";
 import slugify from "slugify";
 
 const router = express.Router();
@@ -53,10 +57,20 @@ router.post("/", newCategoryValidation, async (req, res, next) => {
 });
 
 //update category
-router.put("/", async (req, res) => {
+router.put("/", updateCategoryValidation, async (req, res, next) => {
   try {
-    console.log(req.body);
-  } catch (eror) {
+    const categoryUpdated = await updateCategoryById(req.body);
+    console.log(categoryUpdated, req.body);
+    categoryUpdated?._id
+      ? res.json({
+          status: "success",
+          message: "category updated successfully",
+        })
+      : res.json({
+          status: "error",
+          message: "category could not be updated",
+        });
+  } catch (error) {
     next(error);
   }
 });

@@ -14,3 +14,8 @@ export const getAllCategory = () => {
 export const getOneCategory = (_id) => {
   return CategorySchema.findById(_id);
 };
+
+//update the category using id and passing the data on ...udpate
+export const updateCategoryById = ({ _id, ...update }) => {
+  return CategorySchema.findByIdAndUpdate(_id, update, { new: true });
+};
