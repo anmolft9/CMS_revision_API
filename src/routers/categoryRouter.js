@@ -2,6 +2,7 @@ import express from "express";
 import {
   getAllCategory,
   getOneCategory,
+  hasChildCategory,
   insertCategory,
   updateCategoryById,
 } from "../models/category/CategoryModel.js";
@@ -59,6 +60,16 @@ router.post("/", newCategoryValidation, async (req, res, next) => {
 //update category
 router.put("/", updateCategoryValidation, async (req, res, next) => {
   try {
+    const hasChild = await hasChildCategory(req.body._id);
+
+    if (hasChild) {
+      res.json({
+        status: "error",
+        message:
+          "This category has children categories, Either delete or assign the children to different parent",
+      });
+    }
+
     const categoryUpdated = await updateCategoryById(req.body);
     console.log(categoryUpdated, req.body);
     categoryUpdated?._id

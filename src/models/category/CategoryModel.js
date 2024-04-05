@@ -19,3 +19,10 @@ export const getOneCategory = (_id) => {
 export const updateCategoryById = ({ _id, ...update }) => {
   return CategorySchema.findByIdAndUpdate(_id, update, { new: true });
 };
+
+//check if the category have children category
+export const hasChildCategory = async (parentId) => {
+  const cat = await CategorySchema.findOne({ parentId });
+
+  return cat?._id ? true : false;
+};
