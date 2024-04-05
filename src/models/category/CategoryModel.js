@@ -26,3 +26,8 @@ export const hasChildCategory = async (parentId) => {
 
   return cat?._id ? true : false;
 };
+
+//delete a particular category
+export const deleteCategory = (id) => {
+  return CategorySchema.findByIdAndDelete(id);
+};

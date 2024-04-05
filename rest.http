@@ -54,6 +54,10 @@ GET http://localhost:8000/api/v1/category
 GET http://localhost:8000/api/v1/category/65df4fc40b411220fd2d7ede
 
 
+###Delete
+DELETE http://localhost:8000/api/v1/category/65f06f89458708e59c47e64b
+
+
 
 
 

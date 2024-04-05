@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteCategory,
   getAllCategory,
   getOneCategory,
   hasChildCategory,
@@ -81,6 +82,29 @@ router.put("/", updateCategoryValidation, async (req, res, next) => {
           status: "error",
           message: "category could not be updated",
         });
+  } catch (error) {
+    next(error);
+  }
+});
+
+//delete category
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+
+    const result = await deleteCategory(id);
+    console.log(result);
+    result
+      ? res.json({
+          status: "success",
+          message: "category deleted successfully",
+        })
+      : res.json({
+          status: "error",
+          message: "couldnot be deleted",
+        });
+    console.log(result);
   } catch (error) {
     next(error);
   }
